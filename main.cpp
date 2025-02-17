@@ -1,27 +1,40 @@
 #include <iostream>
-#include <string>
-
 using namespace std;
 
-struct Book {
-    string title;
-    string author;
-    int year;
-    float price;
+struct Rectangle {
+    int length;
+    int width;
 };
 
-void displayBookInfo(Book book) {
-    cout << "Title: " << book.title << endl;
-    cout << "Author: " << book.author << endl;
-    cout << "Year: " << book.year << endl;
-    cout << "Price: $" << book.price << endl;
+int calculateArea(const Rectangle& rect) {
+    return rect.length * rect.width;
+}
+
+void drawHollowRectangle(const Rectangle& rect) {
+    for (int i = 0; i < rect.width; i++) {
+        for (int j = 0; j < rect.length; j++) {
+
+            if (i == 0 || i == rect.width - 1 || j == 0 || j == rect.length - 1) {
+                cout << "=";
+            } else {
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
 }
 
 int main() {
 
-    Book book1 = {"The Great Gatsby", "F. Scott Fitzgerald", 1925, 12.99};
+    Rectangle rect;
+    rect.length = 30;
+    rect.width = 10;
 
-    displayBookInfo(book1);
+    int area = calculateArea(rect);
+    cout << "Area of the rectangle: " << area << endl;
+
+    cout << "Drawing the hollow rectangle:" << endl;
+    drawHollowRectangle(rect);
 
     return 0;
 }
